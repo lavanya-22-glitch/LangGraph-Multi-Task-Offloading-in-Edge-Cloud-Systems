@@ -1,11 +1,12 @@
 # Agentic Workflow Framework for Multi-Task Offloading
 
-**Project:** BTP – 2201CS24 & 2201CS31
+**Project:**
 
 **Authors:**
 
 - [Erum Meraj](https://github.com/erum-meraj)
 - [Hrishikesh Choudhary](https://github.com/vivekananda1001)
+- [Lavanya Bhadani](https://github.com/lavanya-22-glitch)
 
 ---
 
@@ -13,6 +14,8 @@
 
 This repository presents an agentic framework for **multi-task offloading** in **edge–cloud systems**, designed to optimize computational load distribution across heterogeneous devices.
 The system integrates **LLM-guided planning**, **cost-based evaluation**, and **network-aware simulation** to identify efficient task placement policies under latency–energy trade-offs.
+
+It now includes an automated **Data Pipeline** to validate performance across diverse network scenarios.
 
 ---
 
@@ -49,7 +52,7 @@ The overall workflow proceeds as follows:
 
 ```
 agents/
- ├── main.py              # Entry point for multi-agent orchestration
+ ├── main.py              # Entry point & Headless runner
  ├── base_agent.py        # LLM interface and prompt management
  ├── planner.py           # Planner agent for strategy generation
  ├── evaluator.py         # Evaluator agent for cost optimization
@@ -58,14 +61,12 @@ agents/
 
 core/
  ├── workflow.py          # Workflow and task abstractions
- ├── network.py           # Network, node, and link definitions
+ ├── dag_generator.py     # Generates random DAGs for testing
  ├── environment.py       # Environment modeling
  ├── cost_eval.py         # Utility evaluator and cost functions
  └── utils.py             # Helper functions (e.g., topological sorting)
 
-runner/
- └── run_graph.py         # Example runner using StateGraph
-
+pipeline_manager.py       # [NEW] Automates batch scenario testing
 chat_interface.py         # Streamlit-based user interface
 .env, requirements.txt, pyproject.toml
 ```
@@ -85,7 +86,7 @@ chat_interface.py         # Streamlit-based user interface
 | `Environment`             | Stores node and link parameters                      |
 | `UtilityEvaluator`        | Evaluates delay and energy costs                     |
 | `run_experiment()`        | Helper for executing example workflows               |
-
+| `PipelineManager`         | [New] Automates generation and testing of 16+ diverse scenarios |
 ---
 
 ## Evaluation Concept and Methodology
@@ -219,10 +220,10 @@ streamlit run chat_interface.py
 
 This launches the Streamlit-based UI for agent interaction and workflow evaluation.
 
-### 4. Run the Workflow Programmatically
+### 4. Run the Automated Pipeline (Batch Test)
 
 ```bash
-python -m agents.main
+python pipeline_manager.py
 ```
 
 Running as a module ensures proper relative imports for sibling packages such as `core/`.
