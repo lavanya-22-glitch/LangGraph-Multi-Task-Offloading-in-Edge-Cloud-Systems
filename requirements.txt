@@ -1,0 +1,29 @@
+# === Core Python Environment ===
+python-dotenv>=1.0.1
+
+# === LLM + LangChain + Gemini Integration ===
+langchain>=0.3.0
+langchain-core>=0.3.0
+langgraph>=0.2.0
+langchain-google-genai>=1.0.5
+google-generativeai>=0.8.3
+
+# === Data + Numerical Computation ===
+numpy>=1.24.0
+pandas>=2.1.0
+scipy>=1.11.0
+
+# === Machine Learning / Optimization (for network + cost evaluation) ===
+torch>=2.2.0
+networkx>=3.2.0
+
+# === Utility and Environment Simulation ===
+tqdm>=4.66.0
+
+# === Optional: Logging / Debugging ===
+rich>=13.7.0
+
+# === Development Tools (optional but helpful) ===
+black>=24.4.0
+flake8>=7.0.0
+streamlit
