@@ -1,0 +1,57 @@
+{
+  "experiment_id": "pipeline_All_Cloud_Nodes",
+  "timestamp": "2025-12-26T21:06:17.362593",
+  "workflow_features": {
+    "N": 6,
+    "v_mean": 28833333.333333332,
+    "v_std": 12915322.510706248,
+    "v_max": 44000000.0,
+    "v_min": 4000000.0,
+    "edge_count": 0,
+    "edge_density": 0.0,
+    "d_mean": 0.0,
+    "d_std": 0.0,
+    "d_max": 0.0,
+    "d_min": 0.0,
+    "nodes_linear": 0,
+    "nodes_source": 6,
+    "nodes_sink": 6,
+    "critical_path_length": 0
+  },
+  "environment_features": {
+    "location_count": 6,
+    "iot_count": 1,
+    "edge_count": 0,
+    "cloud_count": 5,
+    "dr_mean": 0.000733333333333333,
+    "dr_std": 0.0008956685895029603,
+    "dr_max": 0.002,
+    "dr_min": 0.0001,
+    "de_mean": 0.0008416666666666663,
+    "de_std": 0.0018596632012873246,
+    "vr_mean": 2.1000000000000006e-08,
+    "vr_std": 4.427414595449584e-08,
+    "ve_mean": 1.8333333333333333e-07,
+    "ve_std": 1.8633899812498247e-07,
+    "regime": "network-bound"
+  },
+  "params": {
+    "CT": 0.2,
+    "CE": 1.2,
+    "delta_t": 1,
+    "delta_e": 1
+  },
+  "optimal_policy": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "best_cost": 20.77056,
+  "evaluated_policies": null,
+  "skipped_policies": null,
+  "summary": "Workflow: 6 tasks\n  - Avg compute: 2.88e+07 cycles (std: 1.29e+07)\n  - Edge density: 0.00% (0 edges)\n  - Avg data dependency: 0.00e+00 bytes\n  - Critical path length: ~0 hops\n  - Structure: Multiple sources/sinks (parallel)\nEnvironment: 6 locations\n  - 0 edge, 5 cloud servers\n  - Avg network latency: 7.33e-04 ms/byte\n  - Avg compute speed: 2.10e-08 ms/cycle\n  - Avg task energy: 1.83e-07 mJ/cycle\n  - Regime: network-bound\nMode: BALANCED",
+  "plan_excerpt": "\n## Chain-of-Thought Reasoning:\nOkay, let's analyze this edge-cloud offloading scenario and create a plan for the evaluator agent.\n\n**1. Environment Analysis:**\n\n*   **Locations:** One IoT device (l=0) and five cloud servers (l=1 to l=5).\n*   **Data Time Consumption (DR):** High latency between IoT and Cloud (2.00e-03 ms/byte), low latency within Cloud (1.00e-04 ms/byte).\n*   **Data Energy Consumption (DE):** High energy consumption on IoT (5.00e-03 mJ/byte), low energy consumption on Cloud (1.0"
+}

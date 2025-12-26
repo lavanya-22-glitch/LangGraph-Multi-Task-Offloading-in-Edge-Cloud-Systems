@@ -17,7 +17,6 @@ from agents.main import run_workflow_headless
 # ==============================================================================
 #  REALISTIC PHYSICS CONSTANTS (For constructing the Environment)
 # ==============================================================================
-# We use the same "fixed" values we discussed earlier
 VR_PROFILE = {"iot": 1.2e-7, "edge": 1.2e-8, "cloud": 1.2e-9}
 VE_PROFILE = {"iot": 6.0e-7, "edge": 2.0e-7, "cloud": 1.0e-7}
 DE_PROFILE = {"iot": 0.005,  "edge": 1e-5,   "cloud": 1e-5}
@@ -47,6 +46,7 @@ PIPELINE_SCENARIOS = [
     {"name": "Weak_Cloud", "n": 8, "Cb_mips": 5000},
     {"name": "No_Remote_Nodes", "n": 6, "num_remote": 0}, 
     {"name": "All_Cloud_Nodes", "n": 6, "num_remote": 5},
+    {"name": "Stress_Test_Huge", "n": 20, "edge_prob": 0.4},
 ]
 
 def build_experiment_object(dag_data, scenario_name):
@@ -104,8 +104,8 @@ def run_data_pipeline():
 
     for i, scenario in enumerate(tqdm(PIPELINE_SCENARIOS, desc="Processing Pipelines")):
         
-        # 1. GENERATE RAW DAG
         try:
+            # 1. GENERATE RAW DAG
             raw_dag = generate_random_workflow(
                 n=scenario.get("n", 6),
                 edge_prob=scenario.get("edge_prob", 0.25),
@@ -125,21 +125,19 @@ def run_data_pipeline():
             # 4. HANDLE RESULTS
             if agent_out.get('success'):
                 agent_cost = agent_out['final_cost']
+                policy = agent_out.get('policy', [])     # <--- CHANGE 1: Capture Policy
                 status = "Success"
             else:
                 agent_cost = 0.0
+                policy = []                              # <--- CHANGE 1: Handle Failure
                 status = "Failed"
-                # print(f"Error in {scenario['name']}: {agent_out.get('error')}")
+                print(f"Error in {scenario['name']}: {agent_out.get('error')}")
 
-            # 5. VALIDATE (Simple Baseline for now)
-            # Assume optimal is roughly agent cost for this demo (since brute force is slow)
-            optimal_cost = agent_cost 
-            gap = 0.0
-            
             results.append({
                 "Scenario": scenario['name'],
                 "Tasks": scenario.get("n"),
                 "Agent_Cost": round(agent_cost, 4),
+                "Optimal_Policy": str(policy),           # <--- CHANGE 2: Add to Results
                 "Status": status,
                 "Time_sec": round(duration, 2)
             })
@@ -154,7 +152,8 @@ def run_data_pipeline():
             print(f"❌ Critical Pipeline Failure on {scenario['name']}: {e}")
 
     print(f"\n✅ Pipeline Finished.")
-    print(pd.DataFrame(results)[["Scenario", "Agent_Cost", "Status"]])
+    # CHANGE 3: Update Print Statement to show Policy
+    print(pd.DataFrame(results)[["Scenario", "Agent_Cost", "Optimal_Policy"]])
 
 if __name__ == "__main__":
     run_data_pipeline()

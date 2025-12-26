@@ -1,0 +1,17 @@
+Scenario,Tasks,Agent_Cost,Optimal_Policy,Status,Time_sec
+Tiny_Graph,5,15.2515,"[1, 1, 1, 1, 1]",Success,16.97
+Small_Graph,7,20.172,"[1, 1, 1, 1, 1, 1, 1]",Success,20.21
+Medium_Graph,10,33.6115,"[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",Success,20.44
+Large_Graph,12,43.0918,"[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",Success,19.88
+Sparse_Dependencies,8,24.3698,"[1, 1, 1, 1, 1, 1, 1, 1]",Success,23.66
+Dense_Dependencies,8,29.291,"[1, 1, 1, 1, 1, 1, 1, 1]",Success,18.57
+Pipeline_Structure,8,15.9715,"[1, 1, 1, 1, 1, 1, 1, 1]",Success,19.38
+Parallel_Structure,8,20.1703,"[1, 1, 1, 1, 1, 1, 1, 1]",Success,18.33
+Compute_Heavy,8,25.6903,"[1, 1, 1, 1, 1, 1, 1, 1]",Success,22.34
+Data_Heavy,8,29.652,"[1, 1, 1, 1, 1, 1, 1, 1]",Success,18.89
+High_Bandwidth,8,27.732,"[1, 1, 1, 1, 1, 1, 1, 1]",Success,16.65
+Low_Bandwidth,8,29.1718,"[1, 1, 1, 1, 1, 1, 1, 1]",Success,20.12
+Powerful_Cloud,8,29.2915,"[1, 1, 1, 1, 1, 1, 1, 1]",Success,21.65
+Weak_Cloud,8,23.7713,"[1, 1, 1, 1, 1, 1, 1, 1]",Success,18.25
+No_Remote_Nodes,6,127.056,"[0, 0, 0, 0, 0, 0]",Success,13.25
+All_Cloud_Nodes,6,20.7706,"[1, 1, 1, 1, 1, 1]",Success,18.34

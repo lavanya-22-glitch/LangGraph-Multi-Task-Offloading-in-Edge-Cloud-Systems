@@ -12,7 +12,7 @@ from core.memory_manager import WorkflowMemory
 
 dotenv.load_dotenv()
 # Option A: Hardcode it
-GEMINI_API_KEY = "please add your api key here"
+GEMINI_API_KEY = "your api"
 
 # OR Option B: If you have a .env file
 # GEMINI_API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -613,52 +613,69 @@ def calculate_experiment(dataset_obj: dict, experiment_index: int, memory_manage
     return result
 
 # =============================================================================
-#  HEADLESS RUNNER FOR DATA PIPELINE (Add this to the bottom of main.py)
+#  HEADLESS RUNNER FOR DATA PIPELINE (With Memory Saving Enabled)
 # =============================================================================
 
 def run_workflow_headless(dataset_obj: dict):
     """
-    Runs a single experiment silently for the pipeline_manager.
-    Returns: {'final_cost': float, 'policy': list, 'success': bool}
+    Runs a single experiment for the pipeline_manager.
+    Saves the result to 'memory_store' so the NEXT pipeline run can learn from it.
     """
     try:
         # 1. Reuse your existing parser to get clean objects
         workflow_dict, locations_types, env_dict, params = parse_dataset_object(dataset_obj)
-        
-        # 2. Build the state
-        # Note: We don't use memory_manager here to keep the pipeline pure/isolated
+        experiment_id = dataset_obj.get("meta", {}).get("id", "pipeline_run")
+
+        # 2. Initialize Memory Manager
+        # This allows the agent to SAVE results to disk
+        memory_manager = WorkflowMemory(memory_dir="memory_store")
+
+        # 3. Build the state
         state_data = {
             "env": env_dict,
             "workflow": workflow_dict,
             "params": params,
-            "experiment_id": dataset_obj.get("meta", {}).get("id", "pipeline_run")
+            "experiment_id": experiment_id,
+            "memory_manager": memory_manager 
         }
 
-        # 3. Build and Invoke Graph (Silent Mode)
-        # We reuse your existing build_agentic_workflow but point to a temp log to avoid clutter
+        # 4. Build and Invoke Graph
+        # We pass memory_manager so the agents can use it
         temp_log = "pipeline_temp.log"
-        workflow = build_agentic_workflow(log_file=temp_log, memory_manager=None)
+        workflow = build_agentic_workflow(log_file=temp_log, memory_manager=memory_manager)
         
         result = workflow.invoke({
             "query": "Optimize offloading for data pipeline",
             **state_data  
         })
 
-        # 4. Extract Cost from Evaluation String
-        # Your Evaluator outputs a string like "Optimal policy found: U(w,p*) = 123.45"
+        # 5. SAVE RESULT TO MEMORY (Crucial Step)
+        # This creates the JSON files in 'memory_store/' during Run 1
+        optimal_policy = result.get("optimal_policy", [])
+        
+        # Extract cost safely
         evaluation_str = result.get("evaluation", "")
         optimal_cost = float('inf')
-        
         import re
-        # Regex to find the number after U(w,p*) = 
         match = re.search(r'U\(w,p\*\)\s*=\s*([\d.]+)', evaluation_str)
         if match:
             optimal_cost = float(match.group(1))
-        
+
+        # Save to disk
+        memory_manager.save_execution(
+            workflow_dict=workflow_dict,
+            env_dict=env_dict,
+            params=params,
+            optimal_policy=optimal_policy,
+            evaluation_result={"best_cost": optimal_cost},
+            plan=result.get("plan", ""),
+            experiment_id=experiment_id
+        )
+
         return {
             "success": True,
             "final_cost": optimal_cost,
-            "policy": result.get("optimal_policy", []),
+            "policy": optimal_policy,
             "plan": result.get("plan", "")
         }
 

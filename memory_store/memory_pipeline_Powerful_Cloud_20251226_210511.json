@@ -1,0 +1,59 @@
+{
+  "experiment_id": "pipeline_Powerful_Cloud",
+  "timestamp": "2025-12-26T21:05:11.967239",
+  "workflow_features": {
+    "N": 8,
+    "v_mean": 30500000.0,
+    "v_std": 9233092.656309694,
+    "v_max": 48000000.0,
+    "v_min": 17000000.0,
+    "edge_count": 0,
+    "edge_density": 0.0,
+    "d_mean": 0.0,
+    "d_std": 0.0,
+    "d_max": 0.0,
+    "d_min": 0.0,
+    "nodes_linear": 0,
+    "nodes_source": 8,
+    "nodes_sink": 8,
+    "critical_path_length": 0
+  },
+  "environment_features": {
+    "location_count": 4,
+    "iot_count": 1,
+    "edge_count": 2,
+    "cloud_count": 1,
+    "dr_mean": 0.00041666666666666675,
+    "dr_std": 0.0007080881928749334,
+    "dr_max": 0.002,
+    "dr_min": 0.0001,
+    "de_mean": 0.0012574999999999997,
+    "de_std": 0.0021607333824421745,
+    "vr_mean": 3.63e-08,
+    "vr_std": 4.852494204015086e-08,
+    "ve_mean": 2.75e-07,
+    "ve_std": 1.9202864369671523e-07,
+    "regime": "network-bound"
+  },
+  "params": {
+    "CT": 0.2,
+    "CE": 1.2,
+    "delta_t": 1,
+    "delta_e": 1
+  },
+  "optimal_policy": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "best_cost": 29.29152,
+  "evaluated_policies": null,
+  "skipped_policies": null,
+  "summary": "Workflow: 8 tasks\n  - Avg compute: 3.05e+07 cycles (std: 9.23e+06)\n  - Edge density: 0.00% (0 edges)\n  - Avg data dependency: 0.00e+00 bytes\n  - Critical path length: ~0 hops\n  - Structure: Multiple sources/sinks (parallel)\nEnvironment: 4 locations\n  - 2 edge, 1 cloud servers\n  - Avg network latency: 4.17e-04 ms/byte\n  - Avg compute speed: 3.63e-08 ms/cycle\n  - Avg task energy: 2.75e-07 mJ/cycle\n  - Regime: network-bound\nMode: BALANCED",
+  "plan_excerpt": "\n## Chain-of-Thought Reasoning:\nOkay, let's analyze this edge-cloud offloading scenario and create a plan for the evaluator agent.\n\n**1. Environment Analysis:**\n\n*   **DR (Data Time Consumption):** The data transfer times between the IoT device and edge servers (0.0001 ms/byte) are significantly lower than to the cloud (0.002 ms/byte). This suggests a preference for edge offloading due to lower latency.\n*   **DE (Data Energy Consumption):** The data energy consumption is significantly lower at t"
+}

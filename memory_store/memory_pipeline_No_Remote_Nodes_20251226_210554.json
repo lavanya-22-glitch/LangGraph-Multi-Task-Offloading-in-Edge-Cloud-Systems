@@ -1,0 +1,57 @@
+{
+  "experiment_id": "pipeline_No_Remote_Nodes",
+  "timestamp": "2025-12-26T21:05:54.259534",
+  "workflow_features": {
+    "N": 6,
+    "v_mean": 29166666.666666668,
+    "v_std": 13183533.500376731,
+    "v_max": 44000000.0,
+    "v_min": 5000000.0,
+    "edge_count": 0,
+    "edge_density": 0.0,
+    "d_mean": 0.0,
+    "d_std": 0.0,
+    "d_max": 0.0,
+    "d_min": 0.0,
+    "nodes_linear": 0,
+    "nodes_source": 6,
+    "nodes_sink": 6,
+    "critical_path_length": 0
+  },
+  "environment_features": {
+    "location_count": 1,
+    "iot_count": 1,
+    "edge_count": 0,
+    "cloud_count": 0,
+    "dr_mean": 0.0,
+    "dr_std": 0.0,
+    "dr_max": 0.0,
+    "dr_min": 0.0,
+    "de_mean": 0.005,
+    "de_std": 0.0,
+    "vr_mean": 1.2e-07,
+    "vr_std": 0.0,
+    "ve_mean": 6e-07,
+    "ve_std": 0.0,
+    "regime": "compute-bound"
+  },
+  "params": {
+    "CT": 0.2,
+    "CE": 1.2,
+    "delta_t": 1,
+    "delta_e": 1
+  },
+  "optimal_policy": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "best_cost": 127.056,
+  "evaluated_policies": null,
+  "skipped_policies": null,
+  "summary": "Workflow: 6 tasks\n  - Avg compute: 2.92e+07 cycles (std: 1.32e+07)\n  - Edge density: 0.00% (0 edges)\n  - Avg data dependency: 0.00e+00 bytes\n  - Critical path length: ~0 hops\n  - Structure: Multiple sources/sinks (parallel)\nEnvironment: 1 locations\n  - 0 edge, 0 cloud servers\n  - Avg network latency: 0.00e+00 ms/byte\n  - Avg compute speed: 1.20e-07 ms/cycle\n  - Avg task energy: 6.00e-07 mJ/cycle\n  - Regime: compute-bound\nMode: BALANCED",
+  "plan_excerpt": "\n## Chain-of-Thought Reasoning:\nOkay, let's analyze this edge-cloud offloading scenario and create a plan for the evaluator agent.\n\n**1. Environment Analysis:**\n\n*   **Locations:** Only the IOT device (l=0) is available. This significantly simplifies the offloading decision, as no actual offloading can occur. All tasks must be executed locally.\n*   **DR(li, lj):** Data Time Consumption is irrelevant since there is only one location.\n*   **DE(li):** Data Energy Consumption DE(0) = 5.00e-03 mJ/byt"
+}

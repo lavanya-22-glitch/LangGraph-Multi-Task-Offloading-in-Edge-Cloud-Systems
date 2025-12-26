@@ -318,7 +318,8 @@ Do NOT output chain-of-thought. Think internally only.
         # Exhaustive completion (FIX(1): over real IDs)
         max_exhaustive = 10000
         total_combos = n_locations ** N
-        if total_combos <= max_exhaustive:
+        # if total_combos <= max_exhaustive:
+        if total_combos <= 0:
             print(f"✓ Problem size allows exhaustive search ({total_combos} combinations)")
             all_candidates = list(itertools.product(location_ids, repeat=N))
             candidates = list(set(candidates + all_candidates))
