@@ -12,7 +12,7 @@ from core.memory_manager import WorkflowMemory
 
 dotenv.load_dotenv()
 # Option A: Hardcode it
-GEMINI_API_KEY = "your api"
+GEMINI_API_KEY = "AIzaSyCfSpE4FI0g1qBtXAZlCMi3CKewrzBUL4c"
 
 # OR Option B: If you have a .env file
 # GEMINI_API_KEY = os.getenv("GOOGLE_API_KEY")

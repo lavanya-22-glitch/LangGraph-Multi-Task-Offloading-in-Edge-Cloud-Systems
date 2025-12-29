@@ -1,0 +1,63 @@
+{
+  "experiment_id": "pipeline_Large_Graph",
+  "timestamp": "2025-12-26T21:43:51.956954",
+  "workflow_features": {
+    "N": 12,
+    "v_mean": 29916666.666666668,
+    "v_std": 13250524.098649414,
+    "v_max": 49000000.0,
+    "v_min": 13000000.0,
+    "edge_count": 0,
+    "edge_density": 0.0,
+    "d_mean": 0.0,
+    "d_std": 0.0,
+    "d_max": 0.0,
+    "d_min": 0.0,
+    "nodes_linear": 0,
+    "nodes_source": 12,
+    "nodes_sink": 12,
+    "critical_path_length": 0
+  },
+  "environment_features": {
+    "location_count": 4,
+    "iot_count": 1,
+    "edge_count": 2,
+    "cloud_count": 1,
+    "dr_mean": 0.00041666666666666675,
+    "dr_std": 0.0007080881928749334,
+    "dr_max": 0.002,
+    "dr_min": 0.0001,
+    "de_mean": 0.0012574999999999997,
+    "de_std": 0.0021607333824421745,
+    "vr_mean": 3.63e-08,
+    "vr_std": 4.852494204015086e-08,
+    "ve_mean": 2.75e-07,
+    "ve_std": 1.9202864369671523e-07,
+    "regime": "network-bound"
+  },
+  "params": {
+    "CT": 0.2,
+    "CE": 1.2,
+    "delta_t": 1,
+    "delta_e": 1
+  },
+  "optimal_policy": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "best_cost": 43.09176,
+  "evaluated_policies": null,
+  "skipped_policies": null,
+  "summary": "Workflow: 12 tasks\n  - Avg compute: 2.99e+07 cycles (std: 1.33e+07)\n  - Edge density: 0.00% (0 edges)\n  - Avg data dependency: 0.00e+00 bytes\n  - Critical path length: ~0 hops\n  - Structure: Multiple sources/sinks (parallel)\nEnvironment: 4 locations\n  - 2 edge, 1 cloud servers\n  - Avg network latency: 4.17e-04 ms/byte\n  - Avg compute speed: 3.63e-08 ms/cycle\n  - Avg task energy: 2.75e-07 mJ/cycle\n  - Regime: network-bound\nMode: BALANCED",
+  "plan_excerpt": "\n## Chain-of-Thought Reasoning:\nOkay, let's analyze this edge-cloud offloading scenario for the given workflow and environment.\n\n**1. Environment Analysis:**\n\n*   **Data Transfer (DR):** DR(0,1) is significantly higher (2.00e-03) than DR(0,2) and DR(0,3) (1.00e-04), indicating a large penalty for transferring data from the IoT device to the cloud directly. Edge servers have much lower latency for data transfer to/from the IoT device.\n*   **Data Energy (DE):** DE(0) is much higher (5.00e-03) than"
+}

@@ -1,0 +1,59 @@
+{
+  "experiment_id": "pipeline_Parallel_Structure",
+  "timestamp": "2025-12-26T21:46:05.687697",
+  "workflow_features": {
+    "N": 8,
+    "v_mean": 21000000.0,
+    "v_std": 11789826.122551596,
+    "v_max": 43000000.0,
+    "v_min": 10000000.0,
+    "edge_count": 0,
+    "edge_density": 0.0,
+    "d_mean": 0.0,
+    "d_std": 0.0,
+    "d_max": 0.0,
+    "d_min": 0.0,
+    "nodes_linear": 0,
+    "nodes_source": 8,
+    "nodes_sink": 8,
+    "critical_path_length": 0
+  },
+  "environment_features": {
+    "location_count": 4,
+    "iot_count": 1,
+    "edge_count": 2,
+    "cloud_count": 1,
+    "dr_mean": 0.00041666666666666675,
+    "dr_std": 0.0007080881928749334,
+    "dr_max": 0.002,
+    "dr_min": 0.0001,
+    "de_mean": 0.0012574999999999997,
+    "de_std": 0.0021607333824421745,
+    "vr_mean": 3.63e-08,
+    "vr_std": 4.852494204015086e-08,
+    "ve_mean": 2.75e-07,
+    "ve_std": 1.9202864369671523e-07,
+    "regime": "network-bound"
+  },
+  "params": {
+    "CT": 0.2,
+    "CE": 1.2,
+    "delta_t": 1,
+    "delta_e": 1
+  },
+  "optimal_policy": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "best_cost": 20.17032,
+  "evaluated_policies": null,
+  "skipped_policies": null,
+  "summary": "Workflow: 8 tasks\n  - Avg compute: 2.10e+07 cycles (std: 1.18e+07)\n  - Edge density: 0.00% (0 edges)\n  - Avg data dependency: 0.00e+00 bytes\n  - Critical path length: ~0 hops\n  - Structure: Multiple sources/sinks (parallel)\nEnvironment: 4 locations\n  - 2 edge, 1 cloud servers\n  - Avg network latency: 4.17e-04 ms/byte\n  - Avg compute speed: 3.63e-08 ms/cycle\n  - Avg task energy: 2.75e-07 mJ/cycle\n  - Regime: network-bound\nMode: BALANCED",
+  "plan_excerpt": "\n## Chain-of-Thought Reasoning:\nLet's analyze the edge-cloud offloading scenario and create a plan for the evaluator agent.\n\n**1. Environment Analysis:**\n\n*   **DR (Data Time Consumption):** The IoT device (l=0) has significantly lower latency to edge servers (l=2, l=3) compared to the cloud (l=1). Edge-to-edge latency is also low. Cloud transfers are expensive.\n*   **DE (Data Energy Consumption):** Data processing at the IoT device consumes significantly more energy than at edge or cloud server"
+}

@@ -1,0 +1,56 @@
+{
+  "experiment_id": "pipeline_Tiny_Graph",
+  "timestamp": "2025-12-26T21:42:14.577955",
+  "workflow_features": {
+    "N": 5,
+    "v_mean": 25400000.0,
+    "v_std": 16144348.856488453,
+    "v_max": 48000000.0,
+    "v_min": 6000000.0,
+    "edge_count": 0,
+    "edge_density": 0.0,
+    "d_mean": 0.0,
+    "d_std": 0.0,
+    "d_max": 0.0,
+    "d_min": 0.0,
+    "nodes_linear": 0,
+    "nodes_source": 5,
+    "nodes_sink": 5,
+    "critical_path_length": 0
+  },
+  "environment_features": {
+    "location_count": 4,
+    "iot_count": 1,
+    "edge_count": 2,
+    "cloud_count": 1,
+    "dr_mean": 0.00041666666666666675,
+    "dr_std": 0.0007080881928749334,
+    "dr_max": 0.002,
+    "dr_min": 0.0001,
+    "de_mean": 0.0012574999999999997,
+    "de_std": 0.0021607333824421745,
+    "vr_mean": 3.63e-08,
+    "vr_std": 4.852494204015086e-08,
+    "ve_mean": 2.75e-07,
+    "ve_std": 1.9202864369671523e-07,
+    "regime": "network-bound"
+  },
+  "params": {
+    "CT": 0.2,
+    "CE": 1.2,
+    "delta_t": 1,
+    "delta_e": 1
+  },
+  "optimal_policy": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "best_cost": 15.25152,
+  "evaluated_policies": null,
+  "skipped_policies": null,
+  "summary": "Workflow: 5 tasks\n  - Avg compute: 2.54e+07 cycles (std: 1.61e+07)\n  - Edge density: 0.00% (0 edges)\n  - Avg data dependency: 0.00e+00 bytes\n  - Critical path length: ~0 hops\n  - Structure: Multiple sources/sinks (parallel)\nEnvironment: 4 locations\n  - 2 edge, 1 cloud servers\n  - Avg network latency: 4.17e-04 ms/byte\n  - Avg compute speed: 3.63e-08 ms/cycle\n  - Avg task energy: 2.75e-07 mJ/cycle\n  - Regime: network-bound\nMode: BALANCED",
+  "plan_excerpt": "\n## Chain-of-Thought Reasoning:\nOkay, let's analyze this edge-cloud offloading scenario and create a detailed plan for the evaluator agent.\n\n**1. Environment Analysis:**\n\n*   **Locations:** We have the IoT device (l=0), a Cloud server (l=1), and two Edge servers (l=2, l=3).\n*   **Data Time Consumption (DR):** Communication between the IoT device and Cloud server is significantly slower (2.00e-03 ms/byte) than communication between the IoT device and the Edge servers (1.00e-04 ms/byte). Edge-to-e"
+}
