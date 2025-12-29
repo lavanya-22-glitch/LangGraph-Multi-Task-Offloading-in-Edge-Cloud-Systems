@@ -7,6 +7,7 @@
 - [Erum Meraj](https://github.com/erum-meraj)
 - [Hrishikesh Choudhary](https://github.com/vivekananda1001)
 - [Lavanya Bhadani](https://github.com/lavanya-22-glitch)
+- [Nirmit Chaurasia](https://github.com/nirmit01)
 
 ---
 
